@@ -1,4 +1,4 @@
-package com.samueljuma.movieapp.data
+package com.samueljuma.movieapp.data.model
 
 import com.squareup.moshi.Json
 

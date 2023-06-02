@@ -1,10 +1,10 @@
-package com.samueljuma.movieapp.data.api.db
+package com.samueljuma.movieapp.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.samueljuma.movieapp.data.Movie
+import com.samueljuma.movieapp.data.model.Movie
 
 @Dao
 interface MovieDao {
