@@ -1,11 +1,15 @@
 package com.samueljuma.movieapp.data
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = true)
+@Entity(tableName = "popular_movies")
+@JsonClass(generateAdapter = true) // tells Moshi to generate an adapter for this class. Moshi uses these adapters to convert JSON to objects, and vice versa.
 data class Movie(
 
+    @PrimaryKey
     @Json(name = "id") val id: Int,
 
     @Json(name = "title") val title: String,

@@ -3,7 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
-    id 'dagger.hilt.android.plugin'
+    id 'com.google.dagger.hilt.android'
+
 }
 
 android {
@@ -19,7 +20,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "API_KEY", "\"14b4cf88475b2fab434feecb7a76a485\""
+        buildConfigField "String", "API_KEY", "\"${project.findProperty("API_KEY")}\""
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
 
     }
@@ -70,8 +71,8 @@ dependencies {
     /**
      * Navigation
      */
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     /**
      *   Lifecycle: ViewModel and LiveData
@@ -80,7 +81,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     // Saved state module for ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
     //Annotation Processor
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
@@ -88,8 +89,8 @@ dependencies {
     /**
      * Dagger Hilt dependency
      */
-    implementation("com.google.dagger:hilt-android:$hilt_version")
-    kapt("com.google.dagger:hilt-android-compiler:$hilt_version")
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
