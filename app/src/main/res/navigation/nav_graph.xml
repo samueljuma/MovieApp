@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="com.samueljuma.movieapp.presentation.MovieListFragment"
+        android:name="com.samueljuma.movieapp.presentation.movielist.MovieListFragment"
         android:label="MovieListFragment"
         tools:layout="@layout/fragment_movie_list"/>
     <fragment
         android:id="@+id/movieDetailsFragment"
-        android:name="com.samueljuma.movieapp.presentation.MovieDetailsFragment"
+        android:name="com.samueljuma.movieapp.presentation.moviedetails.MovieDetailsFragment"
         android:label="MovieDetailsFragment"
         tools:layout="@layout/fragment_movie_details"/>
 </navigation>

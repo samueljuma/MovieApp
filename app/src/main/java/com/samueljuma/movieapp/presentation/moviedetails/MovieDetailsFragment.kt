@@ -1,4 +1,4 @@
-package com.samueljuma.movieapp.presentation
+package com.samueljuma.movieapp.presentation.moviedetails
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.samueljuma.movieapp.R
 
-class MovieListFragment : Fragment() {
+class MovieDetailsFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_list, container, false)
+        return inflater.inflate(R.layout.fragment_movie_details, container, false)
     }
+
 }
