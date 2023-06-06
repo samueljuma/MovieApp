@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="movie"
             type="com.samueljuma.movieapp.data.model.Movie" />
+
         <variable
             name="clickListener"
             type="com.samueljuma.movieapp.presentation.movielist.MovieClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
@@ -29,12 +31,13 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/johnwick"
+                app:imageUrl="@{movie}"
                 app:layout_constraintBottom_toTopOf="@+id/titleTextView"
                 app:layout_constraintDimensionRatio="16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/johnwick" />
 
             <TextView
                 android:id="@+id/titleTextView"
@@ -42,13 +45,14 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="8dp"
-                tools:text="@string/sample_title"
+                app:movieTitle="@{movie}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/posterImageView" />
+                app:layout_constraintTop_toBottomOf="@+id/posterImageView"
+                tools:text="@string/sample_title" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
