@@ -1,4 +1,4 @@
-package com.samueljuma.movieapp.presentation.movielist
+package com.samueljuma.movieapp.presentation.ui.movielist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.samueljuma.movieapp.data.model.Movie
 import com.samueljuma.movieapp.databinding.MovieItemBinding
 
-class MovieListAdapter (val clickListener: MovieClickListener): ListAdapter<Movie, MovieListAdapter.ViewHolder>(MovieDiffCallback()){
+class MovieListAdapter (val clickListener: MovieClickListener): ListAdapter<Movie, MovieListAdapter.ViewHolder>(
+    MovieDiffCallback()
+){
 
     class ViewHolder(val binding: MovieItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(movie: Movie, clickListener: MovieClickListener){
@@ -18,7 +20,7 @@ class MovieListAdapter (val clickListener: MovieClickListener): ListAdapter<Movi
         }
 
         companion object {
-            fun from(parent: ViewGroup): ViewHolder{
+            fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = MovieItemBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)

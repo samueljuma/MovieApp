@@ -5,12 +5,13 @@ import com.samueljuma.movieapp.data.datasource.MovieLocalDataSource
 import com.samueljuma.movieapp.data.datasource.MovieRemoteDataSource
 import com.samueljuma.movieapp.data.model.Movie
 import com.samueljuma.movieapp.domain.repositories.MovieRepository
+import javax.inject.Inject
 
 /**
  * Connects the Data Layer with the Domain Layer
  * Implements the Repository interface in the domain layer
  */
-class MovieRepositoryImpl(
+class MovieRepositoryImpl (
     private val movieRemoteDataSource: MovieRemoteDataSource,
     private val movieLocalDataSource: MovieLocalDataSource,
     private val movieCacheDataSource: MovieCacheDataSource

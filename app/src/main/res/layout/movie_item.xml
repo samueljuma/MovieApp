@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.samueljuma.movieapp.presentation.movielist.MovieClickListener" />
+            type="com.samueljuma.movieapp.presentation.ui.movielist.MovieClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
