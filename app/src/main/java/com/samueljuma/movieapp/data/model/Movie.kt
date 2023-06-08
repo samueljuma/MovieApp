@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "popular_movies")
 @JsonClass(generateAdapter = true) // tells Moshi to generate an adapter for this class. Moshi uses these adapters to convert JSON to objects, and vice versa.
-@Parcelize
+@Parcelize // Important especially for passing models as arguments in the nav_graph -> Be sure to add kotlin-parcelize as plugin in gradle
 data class Movie(
 
     @PrimaryKey
