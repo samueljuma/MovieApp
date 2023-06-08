@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/movieListFragment"
         android:name="com.samueljuma.movieapp.presentation.ui.movielist.MovieListFragment"
-        android:label="MovieListFragment"
+        android:label="Home"
         tools:layout="@layout/fragment_movie_list">
         <action
             android:id="@+id/action_movieListFragment_to_movieDetailsFragment2"
@@ -17,9 +17,10 @@
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="com.samueljuma.movieapp.presentation.ui.moviedetails.MovieDetailsFragment"
-        android:label="MovieDetailsFragment"
+        android:label="Movie Details"
         tools:layout="@layout/fragment_movie_details">
-        <argument android:name="movie"
-            app:argType="com.samueljuma.movieapp.data.model.Movie"/>
+        <argument
+            android:name="movie"
+            app:argType="com.samueljuma.movieapp.data.model.Movie" />
     </fragment>
 </navigation>
