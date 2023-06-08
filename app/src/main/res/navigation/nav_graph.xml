@@ -9,10 +9,17 @@
         android:id="@+id/movieListFragment"
         android:name="com.samueljuma.movieapp.presentation.ui.movielist.MovieListFragment"
         android:label="MovieListFragment"
-        tools:layout="@layout/fragment_movie_list"/>
+        tools:layout="@layout/fragment_movie_list">
+        <action
+            android:id="@+id/action_movieListFragment_to_movieDetailsFragment2"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="com.samueljuma.movieapp.presentation.ui.moviedetails.MovieDetailsFragment"
         android:label="MovieDetailsFragment"
-        tools:layout="@layout/fragment_movie_details"/>
+        tools:layout="@layout/fragment_movie_details">
+        <argument android:name="movie"
+            app:argType="com.samueljuma.movieapp.data.model.Movie"/>
+    </fragment>
 </navigation>
