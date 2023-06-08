@@ -1,4 +1,4 @@
-package com.samueljuma.movieapp.presentation.viewmodel
+package com.samueljuma.movieapp.presentation.ui.movielist
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ViewModel @Inject constructor(
+class MovieListViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase,
     private val updateMoviesUseCase: UpdateMoviesUseCase
 ): ViewModel() {

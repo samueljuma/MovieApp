@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.samueljuma.movieapp.R
 import com.samueljuma.movieapp.data.model.Movie
@@ -18,7 +19,8 @@ class MovieDetailsFragment : Fragment() {
     private lateinit var binding: FragmentMovieDetailsBinding
 
     private val arguments: MovieDetailsFragmentArgs by navArgs()
-    private lateinit var selectedMovie: Movie
+
+    private val viewModel: MovieDetailsViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,9 +28,11 @@ class MovieDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMovieDetailsBinding.inflate(layoutInflater, container, false)
 
+        viewModel.setMovie(arguments.movie)
 
-        selectedMovie = arguments.movie
-        binding.movie = selectedMovie
+        viewModel.movie.observe(viewLifecycleOwner){movie ->
+            binding.movie = movie
+        }
         return binding.root
     }
 

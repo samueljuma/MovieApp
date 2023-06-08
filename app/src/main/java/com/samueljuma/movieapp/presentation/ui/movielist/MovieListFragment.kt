@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.samueljuma.movieapp.R
 import com.samueljuma.movieapp.databinding.FragmentMovieListBinding
-import com.samueljuma.movieapp.presentation.viewmodel.ViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,7 +17,7 @@ class MovieListFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieListBinding
     private lateinit var adapter: MovieListAdapter
-    private val viewModel: ViewModel by viewModels()
+    private val viewModel: MovieListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
