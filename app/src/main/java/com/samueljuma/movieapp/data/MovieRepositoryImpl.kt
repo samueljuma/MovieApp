@@ -1,11 +1,12 @@
 package com.samueljuma.movieapp.data
 
+import android.util.Log
 import com.samueljuma.movieapp.data.datasource.MovieCacheDataSource
 import com.samueljuma.movieapp.data.datasource.MovieLocalDataSource
 import com.samueljuma.movieapp.data.datasource.MovieRemoteDataSource
 import com.samueljuma.movieapp.data.model.Movie
 import com.samueljuma.movieapp.domain.repositories.MovieRepository
-import javax.inject.Inject
+
 
 /**
  * Connects the Data Layer with the Domain Layer
@@ -44,7 +45,7 @@ class MovieRepositoryImpl (
                 movieList = body.movies
             }
         }catch (exception: java.lang.Exception){
-
+            Log.e("Tagy", "Failed to get movies from API", exception)
         }
         return movieList
     }
@@ -55,7 +56,7 @@ class MovieRepositoryImpl (
     private suspend fun getMoviesFromRoom(): List<Movie>{
         lateinit var movieList: List<Movie>
         try{
-            movieLocalDataSource.getMoviesFromDB()
+            movieList = movieLocalDataSource.getMoviesFromDB()
         }catch (exception: Exception){
 
         }

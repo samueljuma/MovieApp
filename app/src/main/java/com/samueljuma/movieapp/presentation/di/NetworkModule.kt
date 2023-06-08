@@ -31,8 +31,9 @@ class NetworkModule {
     @Singleton
     fun provideMoshi(): Moshi{
         return Moshi.Builder()
-//            .add(KotlinJsonAdapterFactory()) Not needed
-                /*
+            .add(KotlinJsonAdapterFactory())
+                /**
+                 * =====TURNS OUT IT IS REQUIRED =====
                 * since we are using @JsonClass(generateAdapter = true) on our data classes, we are using code generation
                 * for creating JSON adapters. In this case, the KotlinJsonAdapterFactory
                 * is not required because the adapters are already generated
