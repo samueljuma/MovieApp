@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="movie"
+            type="com.samueljuma.movieapp.data.model.Movie" />
+    </data>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -24,8 +29,9 @@
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    app:imageUrl="@{movie}"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/johnwick" />
+                    tools:src="@drawable/johnwick" />
 
             </androidx.cardview.widget.CardView>
 
@@ -67,7 +73,8 @@
                         android:id="@+id/movie_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sample_title"
+                        android:text="@{movie.title}"
+                        tools:text="@string/sample_title"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -91,7 +98,8 @@
                         android:id="@+id/original_language"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sample_original_language"
+                        android:text="@{movie.original_language}"
+                        tools:text="@string/sample_original_language"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -115,7 +123,8 @@
                         android:id="@+id/release_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sample_release_date"
+                        android:text="@{movie.release_date}"
+                        tools:text="@string/sample_release_date"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
 
@@ -138,7 +147,8 @@
                         android:id="@+id/overview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sample_overview"
+                        android:text="@{movie.overview}"
+                        tools:text="@string/sample_overview"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
                 </LinearLayout>
