@@ -48,6 +48,11 @@ class MovieListFragment : Fragment() {
                 viewModel.doneNavigatingToMovieDetails()
             }
         }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            updateUI(adapter,binding)
+        }
+
     }
 
     private fun subscribeUI(adapter: MovieListAdapter, binding: FragmentMovieListBinding) {
@@ -63,4 +68,20 @@ class MovieListFragment : Fragment() {
 
         }
     }
+    private fun updateUI(adapter: MovieListAdapter, binding: FragmentMovieListBinding) {
+
+        viewModel.updateMovies().observe(viewLifecycleOwner){ movieList ->
+            if(movieList !=null){
+                binding.movieProgressBar.visibility = View.VISIBLE
+                adapter.submitList(movieList)
+                binding.movieProgressBar.visibility = View.GONE
+                binding.swipeRefresh.isRefreshing = false
+                Toast.makeText(context,"Data Refreshed",Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+
 }
