@@ -29,6 +29,6 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.samueljuma.movieapp.presentation.ui.about.AboutFragment"
-        android:label="AboutFragment"
+        android:label="App Info"
         tools:layout="@layout/fragment_about"/>
 </navigation>
