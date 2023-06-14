@@ -6,5 +6,10 @@
     <string name="sample_original_language">en</string>
     <string name="sample_release_date" tools:ignore="TypographyDashes">2019–10-02</string>
     <string name="sample_overview">With the price on his head ever increasing, John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.</string>
+    <string name="app_version">v 1.0</string>
+    <string name="app_desc">Discover a world of movies at your fingertips with our Movie App! Browse through popular titles, get detailed insights about your favorite movies, including release dates, original language, engagement metrics, and captivating overviews. Create a personalized to-watch list, curating your own cinema experience for the future. Our Movie App makes movie discovery not just easy, but truly enjoyable.</string>
+    <string name="dev_insights">Uncover the art of modern mobile app development with the Movies App\'s codebase. Serving as a practical implementation of the Clean Architecture and MVVM patterns, the app is a showcase of the Android Jetpack library and Kotlin in action. The Movie App stands as a great learning tool for anyone keen to delve into Modern Android Development practices. Dive in to explore, learn and enhance your coding skills.</string>
+    <string name="developer">Samuel Juma</string>
+    <string name="developer_email">samueljuma1024@gmail.com</string>
 
 </resources>
