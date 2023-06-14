@@ -14,9 +14,10 @@
             tools:context=".presentation.ui.about.AboutFragment">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="80dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/app_logo_" />
 
@@ -27,6 +28,7 @@
                 android:layout_marginBottom="5dp"
                 android:text="App Version"
                 android:textColor="@color/purple_700"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -35,7 +37,9 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
                 android:text="@string/app_version"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -57,6 +61,7 @@
                         android:layout_marginBottom="4dp"
                         android:text="Description"
                         android:textColor="@color/purple_700"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -65,7 +70,8 @@
                         android:justificationMode="inter_word"
                         android:text="@string/app_desc"
                         android:textAlignment="center"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -90,6 +96,7 @@
                         android:layout_marginBottom="4dp"
                         android:text="Are You a Developer?"
                         android:textColor="@color/purple_700"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -98,7 +105,8 @@
                         android:justificationMode="inter_word"
                         android:text="@string/dev_insights"
                         android:textAlignment="center"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -107,6 +115,7 @@
                         android:layout_marginTop="5dp"
                         android:text="Github Repo"
                         android:textColor="@color/purple_700"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -132,6 +141,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="App Developer"
                         android:textColor="@color/purple_700"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -140,6 +150,7 @@
                         android:layout_gravity="center"
                         android:text="@string/developer"
                         android:textColor="@color/black"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -147,7 +158,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="@string/developer_email"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
