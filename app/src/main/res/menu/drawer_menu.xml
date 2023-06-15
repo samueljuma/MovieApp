@@ -8,7 +8,7 @@
             android:title="Home"
             android:icon="@drawable/ic_home"/>
         <item
-            android:id="@+id/message"
+            android:id="@+id/watchListFragment"
             android:title="WatchList"
             android:icon="@drawable/ic_watchlist"/>
         <item
