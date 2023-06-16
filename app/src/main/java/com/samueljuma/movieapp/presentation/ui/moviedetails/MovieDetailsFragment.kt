@@ -15,7 +15,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.navArgs
 import com.samueljuma.movieapp.R
 import com.samueljuma.movieapp.data.model.Movie
+import com.samueljuma.movieapp.data.model.MovieToWatch
 import com.samueljuma.movieapp.databinding.FragmentMovieDetailsBinding
+import com.samueljuma.movieapp.presentation.ui.watchlist.WatchListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 
@@ -27,6 +29,8 @@ class MovieDetailsFragment : Fragment() {
     private val arguments: MovieDetailsFragmentArgs by navArgs()
 
     private val viewModel: MovieDetailsViewModel by viewModels()
+
+    private val watchListViewModel: WatchListViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,7 +58,17 @@ class MovieDetailsFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when(menuItem.itemId){
                     R.id.menu_add_to_watchlist -> {
-                        Toast.makeText(context, "Add Under Construction", Toast.LENGTH_SHORT).show()
+                        val movie = arguments.movie
+                        val movieToWatch = MovieToWatch(
+                            movie.id,
+                            movie.title,
+                            movie.original_language,
+                            movie.overview,
+                            movie.poster_path,
+                            movie.release_date)
+
+                        watchListViewModel.addToWatchList(movieToWatch)
+                        Toast.makeText(context, "Movie Added to WatchList", Toast.LENGTH_SHORT).show()
                         true
                     }
 

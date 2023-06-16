@@ -10,18 +10,53 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.samueljuma.movieapp.R
+import com.samueljuma.movieapp.databinding.FragmentWatchListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WatchListFragment : Fragment() {
+
+    private lateinit var binding:FragmentWatchListBinding
+    private lateinit var adapter: WatchListAdapter
+    private val viewModel: WatchListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_watch_list, container, false)
+        binding = FragmentWatchListBinding.inflate(layoutInflater, container, false)
+
+        adapter = WatchListAdapter(ClickListener {movieToWatch ->
+            viewModel.onMovieClicked(movieToWatch)
+        })
+
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
+
+        subscribeUI(adapter, binding)
+
+        return binding.root
+    }
+
+    private fun subscribeUI(adapter: WatchListAdapter, binding: FragmentWatchListBinding) {
+        viewModel.getWatchList().observe(viewLifecycleOwner){toWatchList ->
+            binding.cardView2.visibility = View.VISIBLE
+            if(toWatchList.isEmpty()){
+                binding.recyclerView.visibility = View.GONE
+                binding.cardView2.visibility = View.VISIBLE
+            }else{
+                binding.cardView2.visibility = View.GONE
+                adapter.submitList(toWatchList)
+                binding.recyclerView.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

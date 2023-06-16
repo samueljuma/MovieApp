@@ -4,6 +4,7 @@ import com.samueljuma.movieapp.data.MovieRepositoryImpl
 import com.samueljuma.movieapp.data.datasource.MovieCacheDataSource
 import com.samueljuma.movieapp.data.datasource.MovieLocalDataSource
 import com.samueljuma.movieapp.data.datasource.MovieRemoteDataSource
+import com.samueljuma.movieapp.data.datasource.ToWatchLocalDataSource
 import com.samueljuma.movieapp.domain.repositories.MovieRepository
 import dagger.Module
 import dagger.Provides
@@ -20,9 +21,10 @@ class RepositoryModule {
     fun providesMovieRepository(
         movieRemoteDataSource: MovieRemoteDataSource,
         movieLocalDataSource: MovieLocalDataSource,
-        movieCacheDataSource: MovieCacheDataSource
+        movieCacheDataSource: MovieCacheDataSource,
+        toWatchLocalDataSource: ToWatchLocalDataSource
         ): MovieRepository {
 
-        return MovieRepositoryImpl(movieRemoteDataSource, movieLocalDataSource, movieCacheDataSource)
+        return MovieRepositoryImpl(movieRemoteDataSource, movieLocalDataSource, movieCacheDataSource, toWatchLocalDataSource)
     }
 }

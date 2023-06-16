@@ -17,7 +17,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/movie_item" />
+            tools:listitem="@layout/movie_to_watch_item" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
