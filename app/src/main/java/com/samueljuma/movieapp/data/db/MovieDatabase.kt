@@ -5,12 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.samueljuma.movieapp.data.model.Movie
+import com.samueljuma.movieapp.data.model.MovieToWatch
 import com.samueljuma.movieapp.utils.DATABASE_NAME
 
-@Database(entities = [Movie::class], version = 1, exportSchema = false)
+@Database(entities = [Movie::class, MovieToWatch::class], version = 2, exportSchema = false)
 abstract class MovieDatabase :RoomDatabase(){
 
     abstract val movieDao: MovieDao
+    abstract val toWatchDao: ToWatchDao
 
     /*
     * Not needed. We use Dependency Injection for this case.

@@ -4,7 +4,9 @@ import android.util.Log
 import com.samueljuma.movieapp.data.datasource.MovieCacheDataSource
 import com.samueljuma.movieapp.data.datasource.MovieLocalDataSource
 import com.samueljuma.movieapp.data.datasource.MovieRemoteDataSource
+import com.samueljuma.movieapp.data.datasource.ToWatchLocalDataSource
 import com.samueljuma.movieapp.data.model.Movie
+import com.samueljuma.movieapp.data.model.MovieToWatch
 import com.samueljuma.movieapp.domain.repositories.MovieRepository
 
 
@@ -15,7 +17,8 @@ import com.samueljuma.movieapp.domain.repositories.MovieRepository
 class MovieRepositoryImpl (
     private val movieRemoteDataSource: MovieRemoteDataSource,
     private val movieLocalDataSource: MovieLocalDataSource,
-    private val movieCacheDataSource: MovieCacheDataSource
+    private val movieCacheDataSource: MovieCacheDataSource,
+    private val toWatchLocalDataSource: ToWatchLocalDataSource
 ) : MovieRepository{
 
     override suspend fun getAllMovies(): List<Movie>? {
@@ -89,6 +92,22 @@ class MovieRepositoryImpl (
             movieCacheDataSource.saveMoviesToCache(movieList)
             movieList
         }
+    }
+
+    override suspend fun addToWatchList(movie: MovieToWatch) {
+        toWatchLocalDataSource.addToWatchList(movie)
+    }
+
+    override suspend fun removeFromWatchList(movieId: Int) {
+        toWatchLocalDataSource.removeFromWatchList(movieId)
+    }
+
+    override suspend fun getWatchList(): List<MovieToWatch> {
+        return toWatchLocalDataSource.getWatchList()
+    }
+
+    override suspend fun removeAllFromWatchList() {
+        toWatchLocalDataSource.deleteAllFromWatchList()
     }
 
 }

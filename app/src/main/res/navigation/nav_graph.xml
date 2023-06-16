@@ -31,4 +31,13 @@
         android:name="com.samueljuma.movieapp.presentation.ui.about.AboutFragment"
         android:label="App Info"
         tools:layout="@layout/fragment_about"/>
+    <fragment
+        android:id="@+id/watchListFragment"
+        android:name="com.samueljuma.movieapp.presentation.ui.watchlist.WatchListFragment"
+        android:label="My To-Watch List"
+        tools:layout="@layout/fragment_watch_list">
+        <action
+            android:id="@+id/action_watchListFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
 </navigation>
