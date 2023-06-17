@@ -1,6 +1,8 @@
 package com.samueljuma.movieapp.presentation.ui.moviedetails
 
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -20,6 +22,8 @@ import com.samueljuma.movieapp.databinding.FragmentMovieDetailsBinding
 import com.samueljuma.movieapp.presentation.ui.watchlist.WatchListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
+import java.lang.Exception
+import java.sql.SQLException
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
@@ -59,20 +63,21 @@ class MovieDetailsFragment : Fragment() {
                 return when (menuItem.itemId) {
                     R.id.menu_add_to_watchlist -> {
                         val movie = arguments.movie
-                        val movieToWatch = MovieToWatch(
-                            movie.id,
-                            movie.title,
-                            movie.original_language,
-                            movie.overview,
-                            movie.poster_path,
-                            movie.release_date,
-                            System.currentTimeMillis()
-                        )
+                        val movieToWatch = viewModel.movieToToWatchMovie(movie)
 
-                        watchListViewModel.addToWatchList(movieToWatch)
-                        Toast.makeText(context, "Movie Added to WatchList", Toast.LENGTH_SHORT)
-                            .show()
-                        true
+                        watchListViewModel.isMovieInToWatchList(movieToWatch.id)
+                        watchListViewModel.isMovieInWatchList.observe(viewLifecycleOwner){ exists->
+                            exists?.let {
+                                if (exists){
+                                    Toast.makeText(context, "Movie Exists", Toast.LENGTH_SHORT).show()
+                                }else{
+                                    watchListViewModel.addToWatchList(movieToWatch)
+                                    Toast.makeText(context, "Movie Added to WatchList", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        }
+                            true
+
                     }
 
                     else -> false

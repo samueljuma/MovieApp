@@ -5,10 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.samueljuma.movieapp.data.model.Movie
 import com.samueljuma.movieapp.data.model.MovieToWatch
 import com.samueljuma.movieapp.domain.usecases.AddToWatchListUseCase
 import com.samueljuma.movieapp.domain.usecases.DeleteAllFromWatchListUseCase
+import com.samueljuma.movieapp.domain.usecases.GetToWatchMovieUseCase
 import com.samueljuma.movieapp.domain.usecases.GetWatchListUseCase
+import com.samueljuma.movieapp.domain.usecases.IsMovieInToWatchListUseCase
 import com.samueljuma.movieapp.domain.usecases.RemoveFromWatchListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,7 +22,9 @@ class WatchListViewModel @Inject constructor(
     private val addToWatchListUseCase: AddToWatchListUseCase,
     private val removeFromWatchListUseCase: RemoveFromWatchListUseCase,
     private val deleteAllFromWatchListUseCase: DeleteAllFromWatchListUseCase,
-    private val getWatchListUseCase: GetWatchListUseCase
+    private val getWatchListUseCase: GetWatchListUseCase,
+    private val getToWatchMovieUseCase: GetToWatchMovieUseCase,
+    private val isMovieInToWatchListUseCase: IsMovieInToWatchListUseCase
 ) : ViewModel() {
 
     fun getWatchList() = liveData {
@@ -27,11 +32,18 @@ class WatchListViewModel @Inject constructor(
         emit(toWatchList)
     }
 
+
     fun addToWatchList(movieToWatch: MovieToWatch) {
         viewModelScope.launch {
-            addToWatchListUseCase.execute(movieToWatch)
+                addToWatchListUseCase.execute(movieToWatch)
         }
 
+    }
+
+    fun getToWatchMovie(movieId: Int) {
+        viewModelScope.launch {
+            getToWatchMovieUseCase.execute(movieId)
+        }
     }
 
     fun removeFromWatchList(movieToWatch: MovieToWatch) {
@@ -55,5 +67,25 @@ class WatchListViewModel @Inject constructor(
         _movieClicked.value = movieToWatch
     }
 
+    fun movieToToWatchMovie(movie: Movie): MovieToWatch {
+        return MovieToWatch(
+            movie.id,
+            movie.title,
+            movie.original_language,
+            movie.overview,
+            movie.poster_path,
+            movie.release_date,
+            System.currentTimeMillis()
+        )
+    }
+
+    val isMovieInWatchList: MutableLiveData<Boolean> = MutableLiveData()
+
+    fun isMovieInToWatchList(movieId: Int) {
+        viewModelScope.launch {
+            val result = isMovieInToWatchListUseCase.execute(movieId)
+           isMovieInWatchList.postValue(result)
+        }
+    }
 
 }

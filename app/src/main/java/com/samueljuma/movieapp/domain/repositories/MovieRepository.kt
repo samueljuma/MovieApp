@@ -17,4 +17,8 @@ interface MovieRepository {
 
     suspend fun removeAllFromWatchList()
 
+    suspend fun getToWatchMovie(movieId: Int): MovieToWatch?
+
+    suspend fun isMovieInToWatchList(movieId: Int): Boolean
+
 }

@@ -8,4 +8,6 @@ interface ToWatchLocalDataSource {
     suspend fun removeFromWatchList(movieId: Int)
     suspend fun getWatchList(): List<MovieToWatch>
     suspend fun  deleteAllFromWatchList()
+    suspend fun getToWatchMovie(movieId: Int): MovieToWatch?
+    suspend fun isMovieInToWatchList(movieId: Int): Boolean
 }

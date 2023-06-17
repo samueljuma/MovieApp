@@ -110,4 +110,13 @@ class MovieRepositoryImpl (
         toWatchLocalDataSource.deleteAllFromWatchList()
     }
 
+    override suspend fun getToWatchMovie(movieId: Int): MovieToWatch? {
+        return toWatchLocalDataSource.getToWatchMovie(movieId)
+    }
+
+    override suspend fun isMovieInToWatchList(movieId: Int): Boolean {
+       return toWatchLocalDataSource.isMovieInToWatchList(movieId)
+    }
+
+
 }

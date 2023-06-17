@@ -8,7 +8,7 @@ import com.samueljuma.movieapp.data.model.Movie
 import com.samueljuma.movieapp.data.model.MovieToWatch
 import com.samueljuma.movieapp.utils.DATABASE_NAME
 
-@Database(entities = [Movie::class, MovieToWatch::class], version = 3, exportSchema = false)
+@Database(entities = [Movie::class, MovieToWatch::class], version = 1, exportSchema = false)
 abstract class MovieDatabase :RoomDatabase(){
 
     abstract val movieDao: MovieDao

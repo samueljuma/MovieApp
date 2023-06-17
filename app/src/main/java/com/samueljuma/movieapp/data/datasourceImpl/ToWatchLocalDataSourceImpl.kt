@@ -23,4 +23,13 @@ class ToWatchLocalDataSourceImpl(
         toWatchDao.deleteAllMovies()
     }
 
+    override suspend fun getToWatchMovie(movieId: Int): MovieToWatch? {
+        return toWatchDao.getToWatchMovieById(movieId)
+    }
+
+    override suspend fun isMovieInToWatchList(movieId: Int): Boolean {
+        return toWatchDao.isMovieInToWatchList(movieId)
+    }
+
+
 }
