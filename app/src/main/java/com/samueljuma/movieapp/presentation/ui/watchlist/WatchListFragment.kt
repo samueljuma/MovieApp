@@ -38,7 +38,7 @@ class WatchListFragment : Fragment() {
         })
 
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
 
         subscribeUI(adapter, binding)
 
@@ -71,7 +71,9 @@ class WatchListFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when(menuItem.itemId){
                     R.id.menu_clear -> {
-                        Toast.makeText(context, "Clear Under Construction", Toast.LENGTH_SHORT).show()
+                        viewModel.deleteAllFromWatchList()
+                        subscribeUI(adapter, binding)
+                        Toast.makeText(context, "All Cleared", Toast.LENGTH_SHORT).show()
                         true
                     }
 
