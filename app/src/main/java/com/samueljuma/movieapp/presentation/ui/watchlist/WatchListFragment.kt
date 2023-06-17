@@ -38,7 +38,7 @@ class WatchListFragment : Fragment() {
         })
 
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
 
         subscribeUI(adapter, binding)
 
