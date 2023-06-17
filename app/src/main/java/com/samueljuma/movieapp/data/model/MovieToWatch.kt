@@ -1,6 +1,7 @@
 package com.samueljuma.movieapp.data.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
@@ -20,6 +21,8 @@ data class MovieToWatch(
 
     val poster_path: String,
 
-    val release_date: String
+    val release_date: String,
+
+    val time_created: Long
 
 ) : Parcelable

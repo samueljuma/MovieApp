@@ -40,7 +40,7 @@ class MovieDetailsFragment : Fragment() {
 
         viewModel.setMovie(arguments.movie)
 
-        viewModel.movie.observe(viewLifecycleOwner){movie ->
+        viewModel.movie.observe(viewLifecycleOwner) { movie ->
             binding.movie = movie
         }
         return binding.root
@@ -56,7 +56,7 @@ class MovieDetailsFragment : Fragment() {
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when(menuItem.itemId){
+                return when (menuItem.itemId) {
                     R.id.menu_add_to_watchlist -> {
                         val movie = arguments.movie
                         val movieToWatch = MovieToWatch(
@@ -65,10 +65,13 @@ class MovieDetailsFragment : Fragment() {
                             movie.original_language,
                             movie.overview,
                             movie.poster_path,
-                            movie.release_date)
+                            movie.release_date,
+                            System.currentTimeMillis()
+                        )
 
                         watchListViewModel.addToWatchList(movieToWatch)
-                        Toast.makeText(context, "Movie Added to WatchList", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Movie Added to WatchList", Toast.LENGTH_SHORT)
+                            .show()
                         true
                     }
 
@@ -78,7 +81,7 @@ class MovieDetailsFragment : Fragment() {
 
         }
 
-        requireActivity().addMenuProvider(menuProvider,viewLifecycleOwner, Lifecycle.State.RESUMED)
+        requireActivity().addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         /**
          * End of Menu handling

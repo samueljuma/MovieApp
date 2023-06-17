@@ -38,3 +38,11 @@ fun TextView.setMovieToWatchTitle(movie: MovieToWatch?){
         text = it.title
     }
 }
+
+@BindingAdapter("saveDate")
+fun TextView.setSaveDate(movieToWatch: MovieToWatch){
+    movieToWatch?.let {
+        text = formatToDateString(movieToWatch.time_created)
+    }
+
+}
