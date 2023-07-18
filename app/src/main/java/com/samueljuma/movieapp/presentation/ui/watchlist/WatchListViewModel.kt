@@ -46,11 +46,7 @@ class WatchListViewModel @Inject constructor(
         }
     }
 
-    fun removeFromWatchList(movieToWatch: MovieToWatch) {
-        viewModelScope.launch {
-            removeFromWatchListUseCase.execute(movieToWatch.id)
-        }
-    }
+
 
     fun deleteAllFromWatchList() {
         viewModelScope.launch {
@@ -85,6 +81,19 @@ class WatchListViewModel @Inject constructor(
         viewModelScope.launch {
             val result = isMovieInToWatchListUseCase.execute(movieId)
            isMovieInWatchList.postValue(result)
+        }
+    }
+
+    private val _deleteMovieToWatch = MutableLiveData<MovieToWatch?>()
+
+    val deleteMovieToWatch: LiveData<MovieToWatch?>
+        get() = _deleteMovieToWatch
+    fun onClickDeleteMovieToWatch(movieToWatch: MovieToWatch){
+        _deleteMovieToWatch.value = movieToWatch
+    }
+    fun removeFromWatchList(movieToWatch: MovieToWatch) {
+        viewModelScope.launch {
+            removeFromWatchListUseCase.execute(movieToWatch.id)
         }
     }
 

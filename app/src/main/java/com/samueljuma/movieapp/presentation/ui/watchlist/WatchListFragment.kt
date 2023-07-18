@@ -88,5 +88,11 @@ class WatchListFragment : Fragment() {
         /**
          * End of Menu handling
          */
+
+        viewModel.deleteMovieToWatch.observe(viewLifecycleOwner){
+            it?.let {
+                viewModel.removeFromWatchList(it)
+            }
+        }
     }
 }

@@ -6,6 +6,9 @@
     <data>
 
         <variable
+            name="watchListViewModel"
+            type="com.samueljuma.movieapp.presentation.ui.watchlist.WatchListViewModel" />
+        <variable
             name="movie"
             type="com.samueljuma.movieapp.data.model.MovieToWatch" />
 
@@ -105,10 +108,11 @@
                     app:saveDate="@{movie}" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/deleteMovieToWatch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
+                    android:onClick="@{()-> watchListViewModel.onClickDeleteMovieToWatch(movie)}"
                     android:src="@drawable/ic_delete_black"
                     app:layout_constraintBaseline_toBaselineOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

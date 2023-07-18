@@ -1,5 +1,6 @@
 package com.samueljuma.movieapp.presentation.ui.moviedetails
 
+import android.app.AlertDialog
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
@@ -59,7 +60,8 @@ class MovieDetailsFragment : Fragment() {
                 menuInflater.inflate(R.menu.details_menu, menu)
             }
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {// Unsubscribe from the observation to prevent further updates
+                    watchListViewModel.isMovieInWatchList.removeObservers(viewLifecycleOwner)
                 return when (menuItem.itemId) {
                     R.id.menu_add_to_watchlist -> {
                         val movie = arguments.movie
@@ -71,9 +73,11 @@ class MovieDetailsFragment : Fragment() {
                                 if (exists){
                                     Toast.makeText(context, "Movie Exists", Toast.LENGTH_SHORT).show()
                                 }else{
-                                    watchListViewModel.addToWatchList(movieToWatch)
-                                    Toast.makeText(context, "Movie Added to WatchList", Toast.LENGTH_SHORT).show()
+                                    addMovieToWatchList(movieToWatch)
                                 }
+
+                                // Unsubscribe from the observation to prevent further updates
+                                watchListViewModel.isMovieInWatchList.removeObservers(viewLifecycleOwner)
                             }
                         }
                             true
@@ -91,6 +95,25 @@ class MovieDetailsFragment : Fragment() {
         /**
          * End of Menu handling
          */
+
+
     }
+
+    private fun addMovieToWatchList(movieToWatch: MovieToWatch) {
+        AlertDialog.Builder(activity).apply {
+            setTitle("Add to WatchList")
+            setMessage("You are about to add this movie to your WatchList? ")
+            setPositiveButton("Add") { _, _ ->
+                watchListViewModel.addToWatchList(movieToWatch)
+                Toast.makeText(
+                    requireActivity(),
+                    "${movieToWatch.title} was Added to Watchlist",
+                    Toast.LENGTH_SHORT).show()
+            }
+            setNegativeButton("Cancel", null)
+        }.create().show()
+    }
+
+
 
 }

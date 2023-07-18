@@ -18,7 +18,7 @@ import androidx.lifecycle.Lifecycle
 import com.samueljuma.movieapp.R
 import com.samueljuma.movieapp.databinding.FragmentMovieListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
+import kotlin.Exception
 
 @AndroidEntryPoint
 class MovieListFragment : Fragment() {
@@ -42,6 +42,7 @@ class MovieListFragment : Fragment() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
 
         binding.movieProgressBar.visibility = View.VISIBLE
+
         subscribeUI(adapter, binding)
 
         return binding.root
@@ -54,17 +55,18 @@ class MovieListFragment : Fragment() {
         /**
          * New way of handling Menu as of the writing of this code: June 9th 2023
          */
-        val menuProvider = object : MenuProvider{
+        val menuProvider = object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.main_menu, menu)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return when(menuItem.itemId){
+                return when (menuItem.itemId) {
                     R.id.menu_refresh -> {
-                        updateUI(adapter,binding)
+                        updateUI(adapter, binding)
                         true
                     }
+
                     R.id.menu_about -> {
                         findNavController().navigate(R.id.action_movieListFragment_to_aboutFragment)
                         true
@@ -76,54 +78,57 @@ class MovieListFragment : Fragment() {
 
         }
 
-        requireActivity().addMenuProvider(menuProvider,viewLifecycleOwner,Lifecycle.State.RESUMED)
+        requireActivity().addMenuProvider(menuProvider, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
         /**
          * End of Menu handling
          */
 
 
-        viewModel.navigateToMovieDetails.observe(viewLifecycleOwner){movie->
+        viewModel.navigateToMovieDetails.observe(viewLifecycleOwner) { movie ->
             movie?.let {
-                this.findNavController().navigate(MovieListFragmentDirections.actionMovieListFragmentToMovieDetailsFragment2(movie))
+                this.findNavController().navigate(
+                    MovieListFragmentDirections.actionMovieListFragmentToMovieDetailsFragment2(movie)
+                )
                 viewModel.doneNavigatingToMovieDetails()
             }
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            updateUI(adapter,binding)
+            updateUI(adapter, binding)
         }
 
     }
 
     private fun subscribeUI(adapter: MovieListAdapter, binding: FragmentMovieListBinding) {
 
-        viewModel.getMovies().observe(viewLifecycleOwner){ movieList ->
-            if(movieList !=null){
+        viewModel.getMovies().observe(viewLifecycleOwner) { movieList ->
+            if (movieList != null) {
                 binding.movieProgressBar.visibility = View.VISIBLE
                 adapter.submitList(movieList)
                 binding.movieProgressBar.visibility = View.GONE
-            }else{
-                Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "No data", Toast.LENGTH_SHORT).show()
             }
 
         }
     }
+
     private fun updateUI(adapter: MovieListAdapter, binding: FragmentMovieListBinding) {
 
-        viewModel.updateMovies().observe(viewLifecycleOwner){ movieList ->
+        viewModel.updateMovies().observe(viewLifecycleOwner) { movieList ->
             try {
-                if(movieList !=null){
+                if (movieList != null) {
                     binding.movieProgressBar.visibility = View.VISIBLE
                     adapter.submitList(movieList)
                     binding.movieProgressBar.visibility = View.GONE
                     binding.swipeRefresh.isRefreshing = false
-                    Toast.makeText(context,"Data Refreshed",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Data Refreshed", Toast.LENGTH_SHORT).show()
                     Log.i("Tagy", "Refresh Success")
-                }else{
-                    Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "No data", Toast.LENGTH_SHORT).show()
                 }
-            }catch (exception: Exception){
+            } catch (exception: Exception) {
                 Log.e("Tagy", "Failed to Refresh", exception)
             }
 
